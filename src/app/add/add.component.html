@@ -1,0 +1,69 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1>
+          Person Forms</h1>
+
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
+            />
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+              <div *ngIf="f.firstName.errors.required">First Name is required</div>
+              <div *ngIf="f.firstName.errors.minlength">First Name must be at least 6 characters</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
+            />
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+              <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+              <div *ngIf="f.lastName.errors.minlength">Last Name must be at least 6 characters</div>
+            </div>
+          </div>
+
+
+
+          <div class="form-group">
+            <label>Date of Birth</label>
+            <input type="date" formControlName="dateOfBirth" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }"
+            />
+            <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+              <div *ngIf="f.dateOfBirth.errors.required">Date of Birth is required</div>
+            </div>
+          </div>
+
+
+
+
+          <!--<label>
+    First Name:
+    <input type="text" formControlName="firstName" required>
+  </label>
+
+    <label>
+    Last Name:
+    <input type="text" formControlName="lastName" required>
+  </label>
+
+    <label>
+    Date of Birth:
+    <input type="date" formControlName="dateOfBirth" required>
+  </label>-->
+          <div class="form-group">
+            <button type="submit">Submit</button>
+            <!--<button type="submit" [disabled]="!profileForm.valid">Submit</button>-->
+            <button type="reset" (click)="revert()">Reset</button>
+            <a [routerLink]="['/person/list']" class="btn btn-link">goBack</a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

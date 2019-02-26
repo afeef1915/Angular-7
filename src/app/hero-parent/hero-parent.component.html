@@ -1,0 +1,13 @@
+<p>
+  hero-parent works!
+</p>
+ <h2>{{master}} controls {{heroes.length}} heroes</h2>
+    <app-hero-child *ngFor="let hero of heroes"
+      [heros]="hero"
+      [master]="master">
+    </app-hero-child>
+
+    <app-hero-child *ngFor="let he of her"
+      [heros]="he"
+      [master]="master">
+    </app-hero-child>

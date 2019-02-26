@@ -1,0 +1,53 @@
+<td><button type="button" rel="tooltip" title="Edit " class="btn btn-primary btn-simple btn-xs">
+            <i class="material-icons" (click)="addDetails()" >Add persons</i>
+            </button>
+</td>
+<div id="search-component">
+  <h4>Person Search</h4>
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <li *ngFor="let hero of heroes$ | async" >
+     
+        {{hero.id}}  {{hero.first_name}}  {{hero.last_name}}  {{hero.date_of_birth}}
+     
+    </li>
+  </ul>
+</div>
+
+<h2>
+  Person Details</h2>
+  <!--<app-search></app-search>-->
+ 
+<!--<input [(ngModel)]="query" placeholder="Search your Person">-->
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col"> First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Date of Birth</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!--<tr *ngFor="let person of persons |  search:'first_name,last_name,date_of_birth':query">-->
+    <tr *ngFor="let person of persons ">
+      <th scope="row">{{person.id}}</th>
+      <td>{{person.first_name}}</td>
+      <td>{{person.last_name}}</td>
+      <td>{{person.date_of_birth}}</td>
+      <td><button type="button" rel="tooltip" title="Edit " class="btn btn-primary btn-simple btn-xs">
+            <i class="material-icons" (click)="viewDetails(person.id)" >edit</i>
+            </button>
+      </td>
+      <td><button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+            <i class="material-icons" (click)="DeleteDetails(person.id)">Delete</i>
+            </button></td>
+    </tr>
+  </tbody>
+
+</table>

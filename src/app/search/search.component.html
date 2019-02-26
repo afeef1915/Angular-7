@@ -1,0 +1,6 @@
+<div>
+    Search example of RXJS & Observable <input (input)="search($event.target.value)" />
+      <div *ngFor="let word of (searchWord$ | async)">
+        {{ word }}
+      </div>
+    </div>
