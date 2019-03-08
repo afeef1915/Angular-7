@@ -26,6 +26,8 @@ import { QuestionService } from './question.service';
 import { PersonService } from './person.service';
 import { HeroService } from './hero.service';
 import { QuizService } from './quiz.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { QuestionControlService } from './question-control.service';
 import { NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -63,8 +65,28 @@ import { QuizDirective } from './quiz.directive';
 import { QuizBannerComponent } from './quiz-banner/quiz-banner.component';
 import { QuizProfileComponent } from './quiz-profile/quiz-profile.component';
 import { QuizAdComponent } from './quiz-ad/quiz-ad.component';
+import { AddBootsrapComponent } from './add-bootsrap/add-bootsrap.component';
+import { ModalContentComponent } from './add-bootsrap/add-bootsrap.component';
+import { AddnestedBootstrapComponent } from './addnested-bootstrap/addnested-bootstrap.component';
+import { DemonestedComponent } from './demonested/demonested.component';
+import { TypeaheadDemoComponent } from './typeahead-demo/typeahead-demo.component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { AsyncModalComponent } from './async-modal/async-modal.component';
+import { ReactiveFormsBootstrapComponent } from './reactive-forms-bootstrap/reactive-forms-bootstrap.component';
+import { AddPersonBootrapComponent } from './add-person-bootrap/add-person-bootrap.component';
+import { ChildComponent } from './child/child.component';
+import { ParentComponent } from './parent/parent.component';
+import { ViewchildexampleComponent } from './viewchildexample/viewchildexample.component';
+// import { DemoModalServiceNestedComponent } from './add-bootsrap/add-bootsrap.component';
+
 // import { QuiztextboxComponent } from './quiztextbox/quiztextbox.component';
 // import { QuestionComponent } from './question/question.component';
+import { DataTablesModule } from 'angular-datatables';
+import { DatatableexampleComponent } from './datatableexample/datatableexample.component';
+
+import { Select2Component } from './select2/select2.component';
+import { Select2Module } from 'ng2-select2';
+import { DatatableServersideComponent } from './datatable-serverside/datatable-serverside.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +135,22 @@ import { QuizAdComponent } from './quiz-ad/quiz-ad.component';
     QuizBannerComponent,
     QuizProfileComponent,
     QuizAdComponent,
+    AddBootsrapComponent,
+    ModalContentComponent,
+    AddnestedBootstrapComponent,
+    DemonestedComponent,
+    TypeaheadDemoComponent,
+    AsyncModalComponent,
+    ReactiveFormsBootstrapComponent,
+    AddPersonBootrapComponent,
+    ChildComponent,
+    ParentComponent,
+    ViewchildexampleComponent,
+    DatatableexampleComponent,
+    Select2Component,
+    DatatableServersideComponent
+    //DemoModalServiceNestedComponent
+
     //QuiztextboxComponent,
     // QuestionComponent
 
@@ -124,17 +162,17 @@ import { QuizAdComponent } from './quiz-ad/quiz-ad.component';
     // InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
-    // BrowserModule,
-    // AppRoutingModule,
-    // FormsModule,
-    // HttpClientModule 
+    ReactiveFormsModule,
+    ModalModule.forRoot(),
+    TypeaheadModule.forRoot(),
+    DataTablesModule,
+    Select2Module
   ],
   // providers: [QuestionBase, QuestionService, QuestionControlService, HeroService, PersonService],
-   providers: [ QuestionService, QuestionControlService, HeroService, PersonService, QuizService],
+  providers: [QuestionService, QuestionControlService, HeroService, PersonService, QuizService, BsModalService],
   bootstrap: [AppComponent],
   //  exports: [ QuizProfileComponent, QuizAdComponent ],
-  entryComponents: [ QuizProfileComponent, QuizAdComponent ]
+  entryComponents: [QuizProfileComponent, QuizAdComponent, ModalContentComponent]
   // schemas: [
   //       CUSTOM_ELEMENTS_SCHEMA,
   //       NO_ERRORS_SCHEMA

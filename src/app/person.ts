@@ -4,3 +4,8 @@ export class Person {
     last_name: string;
     date_of_birth: Date;
 }
+export const Persons = [
+  {first_name: 'Afeef'},
+  {first_name: 'Ishwar'},
+  {first_name: 'Vineet'}
+];

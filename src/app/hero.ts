@@ -9,8 +9,8 @@ export const HEROES = [
 ];
 
 export const HEROS = [
-  { id:1, name:'Afeef'},
-  { id:2, name:'Vineet'},
-  { id:3, name:'Ishwar'}
+  { id: 1, name: 'Afeef'},
+  { id: 2, name: 'Vineet'},
+  { id: 3, name: 'Ishwar'}
 ];
 

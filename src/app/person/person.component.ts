@@ -107,4 +107,7 @@ export class PersonComponent implements OnInit {
   addDetails(): void {
     this.router.navigate(['/person/add']);
   }
+  addDetailsBootstrap(): void {
+    this.router.navigate(['person/add-bootstrap']);
+  }
 }
