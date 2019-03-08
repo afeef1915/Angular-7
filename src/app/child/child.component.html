@@ -1,0 +1,26 @@
+<!--{{per1.first_name}}
+
+{{person2Name}}-->
+
+<!--{{per1|json}}-->
+<!--<span *ngIf="per1.first_name!==undefined">
+<h3>{{per1.first_name}} says:</h3>
+<p>I, {{per1.first_name}}, am at your service, {{person2Name}}.</p>
+</span>-->
+<!--<h3>{{hero.name}} says:</h3>
+    <p>I, {{hero.name}}, am at your service, {{masterName}}.</p>-->
+
+<h3>{{name}}</h3>
+
+<h3> version {{major}}.{{minor}}</h3>
+<h4> change Log:</h4>
+<!--{{changeLog| json}}-->
+<ul>
+  <li *ngFor="let change of changeLog">{{change}}</li>
+</ul>
+
+<p>Parent listens for child event</p>
+<h4> {{ name}}</h4>
+
+<button (click)="vote(true)" [disabled]="didVote">Agree</button>
+<button (click)="vote(flase)" [disabled]="didVote">DisAgree</button>

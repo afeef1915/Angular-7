@@ -1,0 +1,18 @@
+<h2>1. Basic demo</h2>
+
+<select2 [data]="exampleData" [cssImport]=true></select2>
+
+<h2>2. Demo with options</h2>
+
+<select2 [data]="exampleData" [width]="300" [options]="options"></select2>
+
+<h2>7. Multiple values demo</h2>
+
+<select2 [data]="exampleData"
+         [options]="options"
+         [width]="500"
+         [value]="value"
+         (valueChanged)="changed($event)"
+></select2>
+<br/><br/>
+Selected values: {{ current }}

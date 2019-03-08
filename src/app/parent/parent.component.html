@@ -1,0 +1,27 @@
+<!--{{per1|json}}-->
+<h2>{{per2}} controls {{per1.length}} PERSON</h2>
+
+<app-child *ngFor="let per of per1" [per1]="per" [per2]="per2">
+</app-child>
+
+<!--<h2>{{master}} controls {{heroes.length}} heroes</h2>
+    <app-hero-child *ngFor="let hero of heroes"
+      [hero]="hero"
+      [master]="master">
+    </app-hero-child>-->
+
+<h2>Master controls {{names.length}} names</h2>
+{{names| json}}
+<!--<app-child *ngFor="let n of names" [name]="n" >
+        </app-child>-->
+
+<h2> source code version</h2>
+<button (click)="newMinor()">New Minor Version</button>
+<button (click)="newMajor()">New Major Version</button>
+
+<app-child [major]="major" [minor]="minor"></app-child>
+
+ <h2>Should mankind colonize the Universe?</h2>
+ <h3>Agree :{{trues}} , Disgaree:{{falses}}</h3>
+ <app-child *ngFor="let name of names" [names]="name"  (voted)="onVoted($event)">
+ </app-child>
