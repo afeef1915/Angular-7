@@ -5,3 +5,7 @@
   .dataTables_empty {
     display: none;
   }
+
+  ::ng-deep .odd{
+    display: none
+    }

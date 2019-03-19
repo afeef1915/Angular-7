@@ -27,21 +27,22 @@ class DataTablesResponse {
 export class DatatableServersideComponent implements OnInit {
   dtOptions:  DataTables.Settings =  {};
   persons: Person[];
-
+  private apiUrl = 'http://localhost/angular7demo/person.php?type=person-datatable';
   constructor( private http: HttpClient) { }
 
   ngOnInit(): void {
     const that = this;
     this.dtOptions  = {
       pagingType :  'full_numbers',
-      pageLength: 2,
+      pageLength: 1,
       serverSide: true,
       processing: true,
       ajax: ( dataTablesParameters: any, callback) => {
          that.http
          .post<DataTablesResponse>(
-          'https://angular-datatables-demo-server.herokuapp.com/',
-          dataTablesParameters,{}
+           //'https://angular-datatables-demo-server.herokuapp.com/',
+          this.apiUrl,
+          dataTablesParameters, {}
          ).subscribe( resp => {
             that.persons  = resp.data;
              callback({

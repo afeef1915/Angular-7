@@ -31,13 +31,21 @@ import { TypeaheadDemoComponent } from './typeahead-demo/typeahead-demo.componen
 import { AsyncModalComponent } from './async-modal/async-modal.component';
 import { ReactiveFormsBootstrapComponent } from './reactive-forms-bootstrap/reactive-forms-bootstrap.component';
 import { ParentComponent } from './parent/parent.component';
-import {ViewchildexampleComponent} from './viewchildexample/viewchildexample.component';
+import { ViewchildexampleComponent } from './viewchildexample/viewchildexample.component';
 import { DatatableexampleComponent } from './datatableexample/datatableexample.component';
-import {Select2Component} from './select2/select2.component';
-import {DatatableServersideComponent} from './datatable-serverside/datatable-serverside.component';
+import { Select2Component } from './select2/select2.component';
+import { DatatableServersideComponent } from './datatable-serverside/datatable-serverside.component';
+import { AjaxtestComponent } from './ajaxtest/ajaxtest.component';
+import { ParentsComponent } from './parents/parents.component';
+import { SiblingComponent } from './sibling/sibling.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { InterceptordemoComponent } from './interceptordemo/interceptordemo.component';
+import {AuthGuard} from './authguard';
 
+//import {AuthGuard} from 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'heroes', component: HeroesComponent },
@@ -59,12 +67,18 @@ const routes: Routes = [
   { path: 'nested-modal', component: DemonestedComponent },
   { path: 'typehead-demo', component: TypeaheadDemoComponent },
   { path: 'async-modal', component: AsyncModalComponent },
-  {path: 'reactive-bootstrap', component: ReactiveFormsBootstrapComponent},
-  {path: 'component-inhr', component: ParentComponent},
-  {path: 'viewchild-example', component: ViewchildexampleComponent},
-  {path:  'datatable-example', component: DatatableexampleComponent},
-  { path: 'select2-demo', component: Select2Component},
-  { path: 'serverside-dt', component:  DatatableServersideComponent}
+  { path: 'reactive-bootstrap', component: ReactiveFormsBootstrapComponent },
+  { path: 'component-inhr', component: ParentComponent },
+  { path: 'viewchild-example', component: ViewchildexampleComponent },
+  { path: 'datatable-example', component: DatatableexampleComponent },
+  { path: 'select2-demo', component: Select2Component },
+  { path: 'serverside-dt', component: DatatableServersideComponent },
+  { path: 'ajax-test', component: AjaxtestComponent },
+  { path: 'communication-parent', component: ParentsComponent },
+  { path: 'communication-child', component: SiblingComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'interceptor-demo', component: InterceptordemoComponent }
 ];
 
 @NgModule({

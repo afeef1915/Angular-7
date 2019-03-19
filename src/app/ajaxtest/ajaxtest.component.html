@@ -1,0 +1,25 @@
+<p>
+  ajaxtest works!
+</p>
+<!-- {{persons| json}} -->
+{{name}}
+<table  class="row-border hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Date of Birth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--{{persons| json}}-->
+    <tr *ngFor="let person of persons">
+      <td>{{ person.id }}</td>
+      <td>{{ person.first_name }}</td>
+      <td>{{ person.last_name }}</td>
+      <td>{{person.date_of_birth}}</td>
+    </tr>
+
+  </tbody>
+</table>

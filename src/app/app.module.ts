@@ -9,7 +9,8 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -87,7 +88,16 @@ import { DatatableexampleComponent } from './datatableexample/datatableexample.c
 import { Select2Component } from './select2/select2.component';
 import { Select2Module } from 'ng2-select2';
 import { DatatableServersideComponent } from './datatable-serverside/datatable-serverside.component';
+import { AjaxtestComponent } from './ajaxtest/ajaxtest.component';
+import { ParentsComponent } from './parents/parents.component';
+import { SiblingComponent } from './sibling/sibling.component';
+import { LoginComponent } from './login/login.component';
+import { AlertComponent } from './alert/alert.component';
+import { RegisterComponent } from './register/register.component';
 
+ import {MyInterceptor} from './my-interceptor';
+import { InterceptordemoComponent } from './interceptordemo/interceptordemo.component';
+import { fakeBackendProvider } from './fake-backend';
 @NgModule({
   declarations: [
     AppComponent,
@@ -148,7 +158,14 @@ import { DatatableServersideComponent } from './datatable-serverside/datatable-s
     ViewchildexampleComponent,
     DatatableexampleComponent,
     Select2Component,
-    DatatableServersideComponent
+    DatatableServersideComponent,
+    AjaxtestComponent,
+    ParentsComponent,
+    SiblingComponent,
+    LoginComponent,
+    AlertComponent,
+    RegisterComponent,
+    InterceptordemoComponent
     //DemoModalServiceNestedComponent
 
     //QuiztextboxComponent,
@@ -169,7 +186,13 @@ import { DatatableServersideComponent } from './datatable-serverside/datatable-s
     Select2Module
   ],
   // providers: [QuestionBase, QuestionService, QuestionControlService, HeroService, PersonService],
-  providers: [QuestionService, QuestionControlService, HeroService, PersonService, QuizService, BsModalService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: MyInterceptor,
+    multi: true
+  },
+  fakeBackendProvider,
+  QuestionService, QuestionControlService, HeroService, PersonService, QuizService, BsModalService],
   bootstrap: [AppComponent],
   //  exports: [ QuizProfileComponent, QuizAdComponent ],
   entryComponents: [QuizProfileComponent, QuizAdComponent, ModalContentComponent]

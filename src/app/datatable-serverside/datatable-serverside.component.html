@@ -4,13 +4,18 @@
       <th>ID</th>
       <th>First name</th>
       <th>Last name</th>
+      <!-- <th>Date of Birth</th> -->
     </tr>
   </thead>
   <tbody *ngIf="persons?.length != 0">
       <tr *ngFor="let person of persons">
-          <td>{{ person.id }}</td>
-          <td>{{ person.firstName }}</td>
-          <td>{{ person.lastName }}</td>
+        <td>{{ person.id }}</td>
+        <td>{{ person.first_name }}</td>
+        <td>{{ person.last_name }}</td>
+        <!-- <td>{{person.date_of_birth}}</td> -->
+        <!-- <td>{{ person.id }}</td>
+        <td>{{ person.firstName }}</td>
+        <td>{{ person.lastName }}</td> -->
       </tr>
   </tbody>
   <tbody *ngIf="persons?.length == 0">
