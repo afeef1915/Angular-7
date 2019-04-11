@@ -1,0 +1,19 @@
+<form (submit)="filterById()">
+  <label>
+    Min
+    <input type="number" name="min" id="min" [(ngModel)]="min" />
+  </label>
+  <label>
+    Max
+    <input type="number" name="max" id="max" [(ngModel)]="max" />
+  </label>
+
+  <!-- <label>
+    First Name
+    <input type="string" name="first_name" id="first_name" [(ngModel)]="first_name" />
+  </label> -->
+
+  <button class="btn btn-primary" type="submit">Filter</button>
+</form>
+<br />
+<table datatable [dtOptions]="dtOptions" class="row-border hover"></table>

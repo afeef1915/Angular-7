@@ -41,12 +41,17 @@ import { SiblingComponent } from './sibling/sibling.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { InterceptordemoComponent } from './interceptordemo/interceptordemo.component';
-import {AuthGuard} from './authguard';
+import { AuthGuard } from './authguard';
+import { HomeComponent } from './home/home.component';
+import {CustomFilterdtComponent} from './custom-filterdt/custom-filterdt.component';
+import {IndivisualDtComponent} from './indivisual-dt/indivisual-dt.component';
+import {  MerlinDatatableComponent  } from './merlin-datatable/merlin-datatable.component';
 
-//import {AuthGuard} from 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full', canActivate: [AuthGuard] },
-  { path: 'dashboard', component: DashboardComponent },
+
+  // { path: '', redirectTo: '/dashboard', pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent  },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'heroes', component: HeroesComponent },
   { path: 'reactive-forms', component: ReactiveformsComponent },
@@ -78,7 +83,12 @@ const routes: Routes = [
   { path: 'communication-child', component: SiblingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'interceptor-demo', component: InterceptordemoComponent }
+  { path: 'interceptor-demo', component: InterceptordemoComponent },
+  { path: 'customfilter-dt', component: CustomFilterdtComponent},
+  { path: 'indivisaulfilter-dt', component: IndivisualDtComponent},
+  { path: 'merlin-dt', component: MerlinDatatableComponent  },
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

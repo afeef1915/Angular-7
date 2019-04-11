@@ -27,7 +27,6 @@ export class InterceptordemoComponent implements OnInit {
     }, (error) => {
       console.log('Http Call is failed from component');
     });
-    
   }
 
 }

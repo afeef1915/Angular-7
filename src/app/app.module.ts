@@ -11,6 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 // import { HttpClientModule } from '@angular/common/http';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {JwtInterceptor} from './jwt-interceptor';
+import {ErrorInterceptor} from './error-interceptor';
+// import { BackendInterceptor } from './backend-interceptor';
+
 import { HttpModule } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -98,6 +102,11 @@ import { RegisterComponent } from './register/register.component';
  import {MyInterceptor} from './my-interceptor';
 import { InterceptordemoComponent } from './interceptordemo/interceptordemo.component';
 import { fakeBackendProvider } from './fake-backend';
+import { HomeComponent } from './home/home.component';
+import {AuthGuard} from './authguard';
+import { CustomFilterdtComponent } from './custom-filterdt/custom-filterdt.component';
+import { IndivisualDtComponent } from './indivisual-dt/indivisual-dt.component';
+import { MerlinDatatableComponent } from './merlin-datatable/merlin-datatable.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -165,7 +174,11 @@ import { fakeBackendProvider } from './fake-backend';
     LoginComponent,
     AlertComponent,
     RegisterComponent,
-    InterceptordemoComponent
+    InterceptordemoComponent,
+    HomeComponent,
+    CustomFilterdtComponent,
+    IndivisualDtComponent,
+    MerlinDatatableComponent
     //DemoModalServiceNestedComponent
 
     //QuiztextboxComponent,
@@ -186,12 +199,17 @@ import { fakeBackendProvider } from './fake-backend';
     Select2Module
   ],
   // providers: [QuestionBase, QuestionService, QuestionControlService, HeroService, PersonService],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: MyInterceptor,
-    multi: true
-  },
-  fakeBackendProvider,
+   providers: [{
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: MyInterceptor,
+  //   multi: true
+  // },
+  // fakeBackendProvider,
+   provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  // { provide: HTTP_INTERCEPTORS, useClass: BackendInterceptor, multi: true },
+  
+  AuthGuard,
   QuestionService, QuestionControlService, HeroService, PersonService, QuizService, BsModalService],
   bootstrap: [AppComponent],
   //  exports: [ QuizProfileComponent, QuizAdComponent ],

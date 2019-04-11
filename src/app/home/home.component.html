@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/home">Home</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        <a class="nav-item nav-link" style="position:relative; left:100px;color:white">Hi You're logged as
+            {{currentUser.firstName}}!</a>
+    </div>
+</nav>
+
+
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <app-alert></app-alert>
+
+
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>Date of Birth</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--{{persons| json}}-->
+                        <tr *ngFor="let person of persons">
+                            <td>{{ person.id }}</td>
+                            <td>{{ person.first_name }}</td>
+                            <td>{{ person.last_name }}</td>
+                            <td>{{person.date_of_birth}}</td>
+                            <td><button type="button" rel="tooltip" title="Edit "
+                                    class="btn btn-primary btn-simple btn-xs">
+                                    <i class="material-icons" (click)="viewDetails(person.id)">edit</i>
+                                </button>
+                            </td>
+                            <td><button type="button" rel="tooltip" title="Remove"
+                                    class="btn btn-danger btn-simple btn-xs">
+                                    <i class="material-icons" (click)="DeleteDetails(person.id)">Delete</i>
+                                </button></td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>

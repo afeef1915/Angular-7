@@ -81,6 +81,20 @@ export class PersonService {
     //   .map(data => data[1]);
   }
 
+  searchData(text: any ): Observable<Person> {
+
+    console.log('datatable seacth ');
+
+    console.log(text);
+    const url = `${this.apiUrl}?type=search-datatable-fields`;
+    return this.http.post<Person>(url, JSON.stringify({ tablesearch : text }), httpOptions).pipe(
+      // tslint:disable-next-line:no-shadowed-variable
+      tap((text: Person) => this.log(`added person w/ id=${text}`)),
+      catchError(this.handleError<Person>('searchData'))
+    );
+  
+    
+  }
   addPerson(person: Person): Observable<Person> {
     // console.log('calkling addPerson service');
     // console.log('person_service datat_json' + person);
