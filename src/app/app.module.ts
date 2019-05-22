@@ -107,6 +107,15 @@ import {AuthGuard} from './authguard';
 import { CustomFilterdtComponent } from './custom-filterdt/custom-filterdt.component';
 import { IndivisualDtComponent } from './indivisual-dt/indivisual-dt.component';
 import { MerlinDatatableComponent } from './merlin-datatable/merlin-datatable.component';
+import { DatatableTemplateComponent } from './datatable-template/datatable-template.component';
+import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
+import { ViewTableComponent } from './view-table/view-table.component';
+
+import { TextboxDtComponent } from './textbox-dt/textbox-dt.component';
+import { DynamicFormBuilderDtComponent } from './dynamic-form-builder-dt/dynamic-form-builder-dt.component';
+import { FieldBuilderDtComponent } from './field-builder-dt/field-builder-dt.component';
+import { DropdownStComponent } from './dropdown-st/dropdown-st.component';
+import { MerlinDatatbleServersideComponent } from './merlin-datatble-serverside/merlin-datatble-serverside.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -178,7 +187,17 @@ import { MerlinDatatableComponent } from './merlin-datatable/merlin-datatable.co
     HomeComponent,
     CustomFilterdtComponent,
     IndivisualDtComponent,
-    MerlinDatatableComponent
+    MerlinDatatableComponent,
+    DatatableTemplateComponent,
+    DynamicTableComponent,
+    ViewTableComponent,
+    //DatattableTextboxComponent,
+    //TableDtComponent,
+    TextboxDtComponent,
+    DynamicFormBuilderDtComponent,
+    FieldBuilderDtComponent,
+    DropdownStComponent,
+    MerlinDatatbleServersideComponent
     //DemoModalServiceNestedComponent
 
     //QuiztextboxComponent,

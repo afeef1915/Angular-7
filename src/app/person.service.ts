@@ -46,6 +46,16 @@ export class PersonService {
       );
   }
 
+  getDatatableDetails(): Observable<any> {
+    const url = this.apiUrl + '?type=datatable-stuct';
+    return this.http.get<Person[]>(url)
+    .pipe(
+      tap(_ => this.log('getch datatble data')),
+      catchError(this.handleError('getDatatableDetails', []))
+    );
+  }
+  //http://localhost/angular7demo/person.php?type=datatable-stuct
+
    getDynamicData(): Observable<Person[]> {
 
     const url = this.apiUrl + '?type=dynamic-fields';

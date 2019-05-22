@@ -14,6 +14,7 @@ import { Person } from '../person';
   styleUrls: ['./dynamic-form-builder.component.css'],
   providers: [PersonService]
 })
+
 export class DynamicFormBuilderComponent implements OnInit {
   // @Output() onSubmit = new EventEmitter();
   @Input() fields: any[] = [];
@@ -45,23 +46,23 @@ export class DynamicFormBuilderComponent implements OnInit {
 
 
 
-onSubmit() {
-  this.submitted = true;
-  console.log(this.form.value);
-  // stop here if form is invalid
-  if (this.form.invalid) {
-    return;
-  } else {
-    if (!this.form.value) { return; }
-    this.personservice.addPerson(this.form.value)
-      .subscribe(per => {
-        this.persons.push(per);
+  onSubmit() {
+    this.submitted = true;
+    console.log(this.form.value);
+    // stop here if form is invalid
+    if (this.form.invalid) {
+      return;
+    } else {
+      if (!this.form.value) { return; }
+      this.personservice.addPerson(this.form.value)
+        .subscribe(per => {
+          this.persons.push(per);
 
-      });
-    alert('Saved Data');
-    this.router.navigate(['/person/list']);
+        });
+      alert('Saved Data');
+      this.router.navigate(['/person/list']);
+    }
   }
-}
   // onSubmit() {
   //   this.submitted = true;
 

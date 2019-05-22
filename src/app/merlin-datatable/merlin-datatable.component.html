@@ -1,7 +1,55 @@
+
+<!-- {{filters|json}} -->
+<form [formGroup]="datatablesearchForm" (ngSubmit)="filterById()">
+
+    <div class="form-group">
+        <label>First Name</label>
+       <input type="text" formControlName="first_name" class="form-control" />
+       <select id="filter_comparator" formControlName="f_name"  name="f_name">
+          <option data-value="contains">Contains (Default)</option>
+          <option data-value="starts_with">Starts With</option>
+          <option data-value="ends_with">Ends With</option>
+          <option data-value="exclude">Exclude</option>
+          <option data-value="exact_match">Exact Match</option>
+          <option data-value="not_equal">Not Equal</option>
+          <option data-value="is_null">Is Empty</option>
+          <option data-value="is_not_null">Is Not Empty</option>
+        </select>
+    
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+       <input type="text" formControlName="last_name" class="form-control" />
+       <select formControlName="l_name" id="filter_comparators" name="l_name">
+          <option data-value="contains">Contains (Default)</option>
+          <option data-value="starts_with">Starts With</option>
+          <option data-value="ends_with">Ends With</option>
+          <option data-value="exclude">Exclude</option>
+          <option data-value="exact_match">Exact Match</option>
+          <option data-value="not_equal">Not Equal</option>
+          <option data-value="is_null">Is Empty</option>
+          <option data-value="is_not_null">Is Not Empty</option>
+        </select>
+    </div>
+    <button class="btn btn-primary"  id="button" type="submit">Search</button>
+    
+</form>
+
+
+<!----
 <form (ngSubmit)="filterById($event)">
+
+  <label>
+    Min Id
+    <input type="number" name="min" id="min" [(ngModel)]="min" />
+  </label>
+  <label>
+    Max Id
+    <input type="number" name="max" id="max" [(ngModel)]="max" />
+  </label>
   <label>
     First Name
-    <input type="text" name="first_name" id="first_name"  />
+    <input type="text" name="first_name" id="first_name" />
     <select id="filter_comparator" name="f_name">
       <option data-value="contains">Contains (Default)</option>
       <option data-value="starts_with">Starts With</option>
@@ -16,7 +64,7 @@
   </label>
   <label>
     Last Name
-    <input type="text" name="last_name" id="last_name"  />
+    <input type="text" name="last_name" id="last_name" />
     <select id="filter_comparators" name="l_name">
       <option data-value="contains">Contains (Default)</option>
       <option data-value="starts_with">Starts With</option>
@@ -29,11 +77,21 @@
     </select>
   </label>
 
-
   <button class="btn btn-primary" type="submit">Search</button>
 </form>
+--->
 <br />
-
-
-<table datatable [dtOptions]="dtOptions" class="row-border hover">
-</table>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  
+    <thead>
+        <tr class="table-head">
+        <th *ngFor="let tableHead of headers_columns">{{tableHead}}</th>
+     </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tableData of persons">
+        <td *ngFor="let colName of headers_columns_new">  {{tableData[colName]}}</td>
+        
+      </tr> 
+    </tbody>
+  </table>

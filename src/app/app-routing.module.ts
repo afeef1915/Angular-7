@@ -43,15 +43,19 @@ import { RegisterComponent } from './register/register.component';
 import { InterceptordemoComponent } from './interceptordemo/interceptordemo.component';
 import { AuthGuard } from './authguard';
 import { HomeComponent } from './home/home.component';
-import {CustomFilterdtComponent} from './custom-filterdt/custom-filterdt.component';
-import {IndivisualDtComponent} from './indivisual-dt/indivisual-dt.component';
-import {  MerlinDatatableComponent  } from './merlin-datatable/merlin-datatable.component';
+import { CustomFilterdtComponent } from './custom-filterdt/custom-filterdt.component';
+import { IndivisualDtComponent } from './indivisual-dt/indivisual-dt.component';
+import { MerlinDatatableComponent } from './merlin-datatable/merlin-datatable.component';
+import { DatatableTemplateComponent } from './datatable-template/datatable-template.component';
+import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
+import { ViewTableComponent } from './view-table/view-table.component';
+import { MerlinDatatbleServersideComponent} from './merlin-datatble-serverside/merlin-datatble-serverside.component';
 
 const routes: Routes = [
 
   // { path: '', redirectTo: '/dashboard', pathMatch: 'full', canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard', component: DashboardComponent  },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'heroes', component: HeroesComponent },
   { path: 'reactive-forms', component: ReactiveformsComponent },
@@ -84,9 +88,14 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'interceptor-demo', component: InterceptordemoComponent },
-  { path: 'customfilter-dt', component: CustomFilterdtComponent},
-  { path: 'indivisaulfilter-dt', component: IndivisualDtComponent},
-  { path: 'merlin-dt', component: MerlinDatatableComponent  },
+  { path: 'customfilter-dt', component: CustomFilterdtComponent },
+  { path: 'indivisaulfilter-dt', component: IndivisualDtComponent },
+  { path: 'merlin-dt', component: MerlinDatatableComponent },
+  { path: 'datatable-template', component: DatatableTemplateComponent },
+  { path: 'dynamic-table', component: DynamicTableComponent },
+  { path: 'view-table', component: ViewTableComponent },
+  { path : 'merlin-dts', component: DatatableServersideComponent},
+  { path : 'merlin-dtc', component: MerlinDatatbleServersideComponent},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

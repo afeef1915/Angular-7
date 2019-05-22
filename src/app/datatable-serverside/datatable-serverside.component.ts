@@ -25,35 +25,35 @@ class DataTablesResponse {
   styleUrls: ['./datatable-serverside.component.css']
 })
 export class DatatableServersideComponent implements OnInit {
-  dtOptions:  DataTables.Settings =  {};
+  dtOptions: DataTables.Settings = {};
   persons: Person[];
-  private apiUrl = 'http://localhost/angular7demo/person.php?type=person-datatable';
-  constructor( private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     const that = this;
-    this.dtOptions  = {
-      pagingType :  'full_numbers',
-      pageLength: 1,
+
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 2,
       serverSide: true,
       processing: true,
-      ajax: ( dataTablesParameters: any, callback) => {
-         that.http
-         .post<DataTablesResponse>(
-           //'https://angular-datatables-demo-server.herokuapp.com/',
-          this.apiUrl,
-          dataTablesParameters, {}
-         ).subscribe( resp => {
-            that.persons  = resp.data;
-             callback({
-                recordsTotal:  resp.recordsTotal,
-                recordsFiltered: resp.recordsFiltered,
-                data: []
-             });
-         });
-        },
-      columns : [{ data: 'id'}, { data: 'firstName'}, { data: 'lastName'}]
+      ajax: (dataTablesParameters: any, callback) => {
+        that.http
+          .post<DataTablesResponse>(
+            'https://angular-datatables-demo-server.herokuapp.com/',
+            dataTablesParameters, {}
+          ).subscribe(resp => {
+            that.persons = resp.data;
 
+            callback({
+              recordsTotal: resp.recordsTotal,
+              recordsFiltered: resp.recordsFiltered,
+              data: []
+            });
+          });
+      },
+      columns: [{ data: 'id' }, { data: 'firstName' }, { data: 'lastName' }]
     };
   }
 

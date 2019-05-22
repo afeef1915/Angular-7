@@ -1,18 +1,19 @@
- <div class="form-group row" [formGroup]="form">
-    <label class="col-md-3 form-control-label" [attr.for]="field.label">
-      {{field.label}}
-      <strong class="text-danger" *ngIf="field.required">*</strong>
-    </label>
-  
-    <div class="col-md-9" [ngSwitch]="field.type">
-      <app-textbox *ngSwitchCase="'text'" [field]="field" [form]="form"></app-textbox>
-       <app-textbox *ngSwitchCase="'date'" [field]="field" [form]="form"></app-textbox>
+<div class="form-group row" [formGroup]="form">
+  <label class="col-md-3 form-control-label" [attr.for]="field.label">
+    {{field.label}}
+    <strong class="text-danger" *ngIf="field.required">*</strong>
+  </label>
 
-       <app-dropdown *ngSwitchCase="'dropdown'" [field]="field" [form]="form"></app-dropdown>
-     <app-checkbox *ngSwitchCase="'checkbox'" [field]="field" [form]="form"></app-checkbox>
+  <div class="col-md-9" [ngSwitch]="field.type">
+    <app-textbox *ngSwitchCase="'text'" [field]="field" [form]="form"></app-textbox>
+    <app-textbox *ngSwitchCase="'date'" [field]="field" [form]="form"></app-textbox>
+
+    <app-dropdown *ngSwitchCase="'dropdown'" [field]="field" [form]="form"></app-dropdown>
+    <app-checkbox *ngSwitchCase="'checkbox'" [field]="field" [form]="form"></app-checkbox>
     <app-radio *ngSwitchCase="'radio'" [field]="field" [form]="form"></app-radio>
-     
-      <div class="alert alert-danger my-1 p-2 fadeInDown animated" *ngIf="!isValid && isDirty">{{field.label}} is required</div>
-       <!--<div *ngIf="!isValid && isDirty">First Name must be at least 6 characters</div>-->
+
+    <div class="alert alert-danger my-1 p-2 fadeInDown animated" *ngIf="!isValid && isDirty">{{field.label}} is required
     </div>
+    <!--<div *ngIf="!isValid && isDirty">First Name must be at least 6 characters</div>-->
   </div>
+</div>
