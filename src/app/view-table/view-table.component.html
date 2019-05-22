@@ -1,0 +1,51 @@
+ <div>
+    <form (ngSubmit)="filterById($event)">
+
+        <label>
+            Min Id
+            <input type="number" name="min" id="min" [(ngModel)]="min" />
+          </label>
+          <label>
+            Max Id
+            <input type="number" name="max" id="max" [(ngModel)]="max" />
+          </label>
+      <label> 
+        First Name
+        <input type="text" name="first_name" id="first_name" />
+        <select id="filter_comparator" name="f_name">
+          <option data-value="contains">Contains (Default)</option>
+          <option data-value="starts_with">Starts With</option>
+          <option data-value="ends_with">Ends With</option>
+          <option data-value="exclude">Exclude</option>
+          <option data-value="exact_match">Exact Match</option>
+          <option data-value="not_equal">Not Equal</option>
+          <option data-value="is_null">Is Empty</option>
+          <option data-value="is_not_null">Is Not Empty</option>
+        </select>
+    
+      </label>
+      <label>
+        Last Name
+        <input type="text" name="last_name" id="last_name"/>
+        <select id="filter_comparators" name="l_name">
+          <option data-value="contains">Contains (Default)</option>
+          <option data-value="starts_with">Starts With</option>
+          <option data-value="ends_with">Ends With</option>
+          <option data-value="exclude">Exclude</option>
+          <option data-value="exact_match">Exact Match</option>
+          <option data-value="not_equal">Not Equal</option>
+          <option data-value="is_null">Is Empty</option>
+          <option data-value="is_not_null">Is Not Empty</option>
+        </select>
+      </label>
+    
+    
+      <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    <br />
+  <app-dynamic-table [tableHeads]="headers_columns" 
+                 [tableDatas]="persons" 
+  >
+  </app-dynamic-table>
+</div>
+ 
