@@ -91,20 +91,33 @@ export class PersonService {
     //   .map(data => data[1]);
   }
 
-  searchData(text: any ): Observable<Person> {
-
-    console.log('datatable seacth ');
-
-    console.log(text);
-    const url = `${this.apiUrl}?type=search-datatable-fields`;
-    return this.http.post<Person>(url, JSON.stringify({ tablesearch : text }), httpOptions).pipe(
-      // tslint:disable-next-line:no-shadowed-variable
-      tap((text: Person) => this.log(`added person w/ id=${text}`)),
-      catchError(this.handleError<Person>('searchData'))
+  //fix typescript-type-x-is-missing-the-following-properties-from-type-y-length-pop
+  searchData(term: any): Observable<Person[]> {
+    //searchData(term: any): Observable<any> {
+    
+    //const url = `${this.apiUrl}?type=search-datatable-fields`;
+    const url = `${this.apiUrl}?type=datatable-test`;
+    
+    return this.http.post<Person[]>(url, JSON.stringify({ tablesearch : term }), httpOptions).pipe(
+      tap((person: Person[]) => this.log(`added person w/ id=${person}`)),
+      catchError(this.handleError<Person[]>('searchPerson', []))
     );
+  }
+
+  // searchData(text: any ): Observable<Person> {
+
+  //   console.log('datatable seacth ');
+
+  //   console.log(text);
+  //   const url = `${this.apiUrl}?type=search-datatable-fields`;
+  //   return this.http.post<Person>(url, JSON.stringify({ tablesearch : text }), httpOptions).pipe(
+  //     // tslint:disable-next-line:no-shadowed-variable
+  //     tap((text: Person) => this.log(`added person w/ id=${text}`)),
+  //     catchError(this.handleError<Person>('searchData'))
+  //   );
   
     
-  }
+  // }
   addPerson(person: Person): Observable<Person> {
     // console.log('calkling addPerson service');
     // console.log('person_service datat_json' + person);
