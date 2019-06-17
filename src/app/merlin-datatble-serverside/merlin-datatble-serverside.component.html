@@ -1,5 +1,5 @@
 
-
+<!---
 <form [formGroup]="datatablesearchForm" (ngSubmit)="filterById()">
 
   <div class="form-group">
@@ -33,7 +33,10 @@
   </div>
   <button class="btn btn-primary" id="button" type="submit">Search</button>
 
-</form>
+</form> -->
+<!-- {{publicDeals2|json}} -->
+
+<app-dynamic-form-builder (messageEvent)="receiveMessage($event)" *ngIf="publicDeals2.length > 0" [fields]="publicDeals2" [button]="button_label" ></app-dynamic-form-builder>
 
 <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
 

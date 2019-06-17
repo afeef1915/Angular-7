@@ -30,6 +30,8 @@ import { FormBuilder } from '@angular/forms';
 import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
+import { DynamicFormBuilderComponent } from '../dynamic-form-builder/dynamic-form-builder.component';
+
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 class DataTablesResponse {
   data: any[];
@@ -51,13 +53,15 @@ export class MerlinDatatbleServersideComponent implements OnDestroy, OnInit {
   // public person: Person[];
   publicDeals: Person[] = [];
   publicDeals1: Person[] = [];
+  publicDeals2: Person[] = [];
 
   p_col: any;
   headers_columns: any;
   headers_columns_new: any;
   headers_column: any;
   search_submitted = false;
-  datatablesearchForm: FormGroup;
+  //datatablesearchForm: FormGroup;
+  public form: FormGroup;
   values: any;
   filters: any;
   p2: any = [];
@@ -83,37 +87,98 @@ export class MerlinDatatbleServersideComponent implements OnDestroy, OnInit {
   //public globalVar = 'afeef';
   // arr: ColumnSettings[];
   // list: ColumnSettings[];
+  public fields: any[] = [
+    {
+      type: 'text',
+      name: 'firstName',
+      label: 'First Name',
+      value: '',
+      required: true,
+    },
+    {
+      type: 'text',
+      name: 'lastName',
+      label: 'Last Name',
+      value: '',
+      required: true,
+    },
+    {
+      type: 'date',
+      name: 'dateOfBirth',
+      label: 'Date of Birth',
+      value: '',
+      required: true,
+    },
+    // {
+    //   type: 'dropdown',
+    //   name: 'country',
+    //   label: 'Country',
+    //   value: 'in',
+    //   required: true,
+    //   options: [
+    //     { key: 'in', label: 'India' },
+    //     { key: 'us', label: 'USA' }
+    //   ]
+    // },
+    // {
+    //   type: 'radio',
+    //   name: 'gender',
+    //   label: 'Gender',
+    //   value: 'in',
+    //   required: true,
+    //   options: [
+    //     { key: 'm', label: 'Male' },
+    //     { key: 'f', label: 'Female' }
+    //   ]
+    // },
+    // {
+    //   type: 'checkbox',
+    //   name: 'hobby',
+    //   label: 'Hobby',
+    //   required: true,
+    //   options: [
+    //     { key: 'f', label: 'Fishing' },
+    //     { key: 'c', label: 'Cooking' }
+    //   ]
+    // }
 
-
+  ];
+  button_label: any;
+  input_val: any;
+  // @ViewChild(DynamicFormBuilderComponent) component1: DynamicFormBuilderComponent;
+  message: any;
   constructor(private httpClient: HttpClient, private http: Http, private formBuilder: FormBuilder,
     private personservice: PersonService) { }
 
   ngOnInit(): void {
 
-    this.datatablesearchForm = this.formBuilder.group({
-      id: ['', Validators.required],
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      date_of_birth: ['', Validators.required],
-      f_name: ['', Validators.required],
-      l_name: ['', Validators.required]
-    });
-
+    // this.datatablesearchForm = this.formBuilder.group({
+    //   id: ['', Validators.required],
+    //   first_name: ['', Validators.required],
+    //   last_name: ['', Validators.required],
+    //   date_of_birth: ['', Validators.required],
+    //   f_name: ['', Validators.required],
+    //   l_name: ['', Validators.required]
+    // });
+    // this.datatablesearchForm = new FormGroup({
+    //   fields: new FormControl(JSON.stringify(this.fields))
+    // });
     const that = this;
     const list: string[] = [];
     this.getOtherDetails();
     this.p_col = this.publicDeals;
-   
 
     this.datatabldata();
+  }
+
+  datatabldata() {
  
 
+    console.log('input_val==========');
+    //console.log(input_val);
 
-  }
-  
-  datatabldata() {
-   
-    this.dtOptions = {
+    
+   this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 2,
       serverSide: true,
@@ -122,16 +187,18 @@ export class MerlinDatatbleServersideComponent implements OnDestroy, OnInit {
       ajax: (dataTablesParameters: any, callback) => {
         this.httpClient
           .post<DataTablesResponse>(
-           this.api_url + '&types=filter_data&data=' + JSON.stringify(this.datatablesearchForm.value),
+
+            this.api_url + '&types=filter_data&data=' + JSON.stringify(this.input_val),
+
             //this.api_url,
             dataTablesParameters,
             {},
 
           ).subscribe(resp => {
- 
-           console.log('checking datata');
-           console.log( this.datatablesearchForm.value);
-            console.log(this.publicDeals1);
+
+            // console.log('checking datata');
+            // console.log(this.form.value);
+            // console.log(this.publicDeals1);
             if (this.publicDeals1.length > 0) {
               //console.log('iff when filter active search');
 
@@ -164,12 +231,26 @@ export class MerlinDatatbleServersideComponent implements OnDestroy, OnInit {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
+  // ngAfterViewInit() {
+  //    // this.message = this.component1.onSubmit();
+  //     console.log('im here-=========');
+  //     // console.log(this.message);
+  //   // }
+  // }
 
+  receiveMessage($event) {
+    // console.log('testtstsing');
+    // console.log($event);
+    this.filterById($event);
+    //this.datatabldata($event);
+    //this.message = $event;
+  }
 
   getOtherDetails() {
 
     return this.personservice.getDatatableDetails()
       .subscribe(persons => {
+        this.button_label = persons.button_label;
         this.headers_columns = persons.TABLE_FIELDS;
         this.headers_column = persons.TABLE_FIELD;
         // this.users$ = persons;
@@ -180,10 +261,23 @@ export class MerlinDatatbleServersideComponent implements OnDestroy, OnInit {
           this.publicDeals.push(element);
 
         });
+        persons.FIELDS_FILTERS.forEach(element => {
+          this.publicDeals2.push(element);
+          // console.log(this.publicDeals);
+        });
+        this.form = new FormGroup({
+          fields: new FormControl(this.publicDeals)
+        });
+
       });
 
   }
 
+  getFields() {
+
+    // console.log(this.publicDeals2);
+    return this.publicDeals2;
+  }
   // getOtherDetails(): void {
   //   this.http.get(this.api_url1)
   //     .map(this.extractData)
@@ -199,36 +293,45 @@ export class MerlinDatatbleServersideComponent implements OnDestroy, OnInit {
 
   filterById(event: any) {
 
-    if (!event) {
-      this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
+    this.input_val = event;
+    //this.datatabldata(event);
+    // if (!event) {
+    this.datatableElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // console.log('datatatble===in');
+      // console.log(event);
+      // Destroy the table first
+      dtInstance.destroy();
+      this.dtTrigger.next();
+      this.publicDeals1 = [];
+      this.filter_vals = event;
 
-        // Destroy the table first
-        dtInstance.destroy();
-        this.dtTrigger.next();
-        this.publicDeals1 = [];
-        this.filter_vals = this.datatablesearchForm.value;
+      // console.log(this.form.value);
+     // console.log('form value=========');
+      //console.log(event);
+      return this.personservice.searchData(event)
+        .subscribe(data => {
+          this.send_data_service = data;
 
-        //console.log(this.filter_vals);
-        return this.personservice.searchData(this.datatablesearchForm.value)
-          .subscribe(data => {
-            this.send_data_service = data;
-           
-            if(this.send_data_service.lenth > 0)
-            {
-            this.send_data_service.forEach(element => {
-              // console.log(element);
+          // console.log(this.send_data_service);
+
+          if (this.send_data_service.data.length > 0) {
+            this.send_data_service.data.forEach(element => {
+              //console.log('element======loop');
+            //  console.log(element);
               this.publicDeals1.push(element);
               // this.search_data = element;
             });
+           // console.log('publicDeals1=======array=====');
+           // console.log(this.publicDeals1);
           }
 
-          });
+        });
+      //dtInstance.draw();
+      // dtInstance.search(this.datatablesearchForm.value.first_name || this.datatablesearchForm.value.last_name).draw();
 
-        // dtInstance.search(this.datatablesearchForm.value.first_name || this.datatablesearchForm.value.last_name).draw();
+    });
 
-      });
-
-    }
+    //}
   }
   private extractData(res: Response) {
     const body = res.json();

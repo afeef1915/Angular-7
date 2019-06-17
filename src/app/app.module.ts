@@ -116,6 +116,8 @@ import { DynamicFormBuilderDtComponent } from './dynamic-form-builder-dt/dynamic
 import { FieldBuilderDtComponent } from './field-builder-dt/field-builder-dt.component';
 import { DropdownStComponent } from './dropdown-st/dropdown-st.component';
 import { MerlinDatatbleServersideComponent } from './merlin-datatble-serverside/merlin-datatble-serverside.component';
+import { SearchDynamicComponent } from './search-dynamic/search-dynamic.component';
+import { DynamicFormsTestComponent } from './dynamic-forms-test/dynamic-forms-test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -197,7 +199,9 @@ import { MerlinDatatbleServersideComponent } from './merlin-datatble-serverside/
     DynamicFormBuilderDtComponent,
     FieldBuilderDtComponent,
     DropdownStComponent,
-    MerlinDatatbleServersideComponent
+    MerlinDatatbleServersideComponent,
+    SearchDynamicComponent,
+    DynamicFormsTestComponent
     //DemoModalServiceNestedComponent
 
     //QuiztextboxComponent,

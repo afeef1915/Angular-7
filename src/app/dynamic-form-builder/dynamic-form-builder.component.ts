@@ -1,5 +1,5 @@
 // import { Component, OnInit } from '@angular/core';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, AfterViewInit, ViewChild  } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TextboxComponent } from '../textbox/textbox.component';
 import { NgModule } from '@angular/core';
@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PersonService } from '../person.service';
 import { Person } from '../person';
+import { MerlinDatatbleServersideComponent } from '../merlin-datatble-serverside/merlin-datatble-serverside.component';
 @Component({
   selector: 'app-dynamic-form-builder',
   templateUrl: './dynamic-form-builder.component.html',
@@ -15,12 +16,16 @@ import { Person } from '../person';
   providers: [PersonService]
 })
 
-export class DynamicFormBuilderComponent implements OnInit {
+export class DynamicFormBuilderComponent implements OnInit  {
   // @Output() onSubmit = new EventEmitter();
   @Input() fields: any[] = [];
   form: FormGroup;
   persons: Person[];
   submitted = false;
+  @Input() button: any;
+  @ViewChild(MerlinDatatbleServersideComponent) component1: MerlinDatatbleServersideComponent;
+  message: any;
+  @Output() messageEvent = new EventEmitter<string>();
   constructor(private router: Router, private personservice: PersonService) { }
 
   ngOnInit() {
@@ -29,6 +34,8 @@ export class DynamicFormBuilderComponent implements OnInit {
     //   fieldsCtrls[f.name] = new FormControl(f.value || '', Validators.required);
     // }
     // this.form = new FormGroup(fieldsCtrls);
+   
+
     const fieldsCtrls = {};
     for (const f of this.fields) {
       if (f.type !== 'checkbox') {
@@ -44,25 +51,45 @@ export class DynamicFormBuilderComponent implements OnInit {
     this.form = new FormGroup(fieldsCtrls);
   }
 
+  // ngAfterViewInit() {
+  //   // this.message = this.child.filterById();
+  //   console.log('im here-=========');
+  //   // console.log(this.message);
+  //  // onSubmit( ) {
+  //     this.component1.filterById(event);
+  //      console.log('submit search function');
+  //      // this.submitted = true;
+  //      console.log(this.form.value);
+  //  // }
+  // }
 
 
-  onSubmit() {
-    this.submitted = true;
-    console.log(this.form.value);
-    // stop here if form is invalid
-    if (this.form.invalid) {
-      return;
-    } else {
-      if (!this.form.value) { return; }
-      this.personservice.addPerson(this.form.value)
-        .subscribe(per => {
-          this.persons.push(per);
+  // onSubmit() {
+  //   this.submitted = true;
+  //   console.log(this.form.value);
+  //   // stop here if form is invalid
+  //   if (this.form.invalid) {
+  //     return;
+  //   } else {
+  //     if (!this.form.value) { return; }
+  //     this.personservice.addPerson(this.form.value)
+  //       .subscribe(per => {
+  //         this.persons.push(per);
 
-        });
-      alert('Saved Data');
-      this.router.navigate(['/person/list']);
-    }
+  //       });
+  //     alert('Saved Data');
+  //     this.router.navigate(['/person/list']);
+  //   }
+  // }
+  
+  onSubmit(event: any ) {
+    // console.log('submit search function');
+    // console.log(event);
+    this.messageEvent.emit(this.form.value);
+     //this.component1.filterById(this.form.value);   
   }
+
+  
   // onSubmit() {
   //   this.submitted = true;
 
