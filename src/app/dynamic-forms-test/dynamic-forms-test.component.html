@@ -1,0 +1,6 @@
+<p>
+  dynamic-forms-test works!
+</p>
+<!-- {{publicDeals|json}} -->
+{{button_label|json}}
+<app-dynamic-form-builder  *ngIf="publicDeals.length > 0" [fields]="publicDeals" [button]="button_label" ></app-dynamic-form-builder>
