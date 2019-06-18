@@ -118,6 +118,8 @@ import { DropdownStComponent } from './dropdown-st/dropdown-st.component';
 import { MerlinDatatbleServersideComponent } from './merlin-datatble-serverside/merlin-datatble-serverside.component';
 import { SearchDynamicComponent } from './search-dynamic/search-dynamic.component';
 import { DynamicFormsTestComponent } from './dynamic-forms-test/dynamic-forms-test.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
@@ -219,7 +221,8 @@ import { DynamicFormsTestComponent } from './dynamic-forms-test/dynamic-forms-te
     ModalModule.forRoot(),
     TypeaheadModule.forRoot(),
     DataTablesModule,
-    Select2Module
+    Select2Module,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   // providers: [QuestionBase, QuestionService, QuestionControlService, HeroService, PersonService],
    providers: [{
