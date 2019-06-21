@@ -18,7 +18,7 @@
   </label>
 
  <button type="submit" [disabled]="!editprofileForm.valid">Submit</button>
- <button type="reset" (click)="revert()">Reset</button>
+ <button type="reset" (click)="goBack()">Reset</button>
   <a [routerLink]="['/person/list']" class="btn btn-link">goBack</a>
 </form>
 

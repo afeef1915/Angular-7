@@ -33,7 +33,7 @@ export class ViewTableComponent implements OnInit {
 
   // fetch or create an Object of UserDetails type and pass it to dynamic-table
   //private userDetails: Array<UserDetails>;
-  private persons: Array<Person>;
+   persons: Array<Person>;
   // required to provide the table header, you can call an api or hard code the column name.
   private tableHead: Array<String>;  
   // optional, you can hard code the property name or just send the data of an object and dynamic-table component will figure out.

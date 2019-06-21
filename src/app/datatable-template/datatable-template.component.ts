@@ -33,7 +33,7 @@ export class DatatableTemplateComponent implements OnInit, AfterViewInit {
   Search$: Observable<Person>;
   persons: Person[];
  
-  @ViewChild(DataTableDirective)
+  @ViewChild(DataTableDirective,{static: false})
   datatableElement: DataTableDirective;
   constructor(private personservice: PersonService, private httpClient: HttpClient) { }
   dtOptions: DataTables.Settings = {};

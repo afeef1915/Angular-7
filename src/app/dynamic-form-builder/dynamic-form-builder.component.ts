@@ -23,7 +23,7 @@ export class DynamicFormBuilderComponent implements OnInit  {
   persons: Person[];
   submitted = false;
   @Input() button: any;
-  @ViewChild(MerlinDatatbleServersideComponent) component1: MerlinDatatbleServersideComponent;
+  @ViewChild(MerlinDatatbleServersideComponent,{static: false}) component1: MerlinDatatbleServersideComponent;
   message: any;
   @Output() messageEvent = new EventEmitter<string>();
   constructor(private router: Router, private personservice: PersonService) { }

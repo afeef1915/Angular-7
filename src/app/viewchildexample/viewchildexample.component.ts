@@ -6,8 +6,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./viewchildexample.component.css']
 })
 export class ViewchildexampleComponent implements OnInit {
-  @ViewChild('maincontent') mainContent: any;
-  @ViewChild('subcontent') subContent: any;
+  @ViewChild('maincontent',{static: false}) mainContent: any;
+  @ViewChild('subcontent',{static: false}) subContent: any;
   constructor() { }
   ngOnInit() {
   }

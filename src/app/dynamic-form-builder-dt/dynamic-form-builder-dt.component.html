@@ -1,4 +1,5 @@
-<form (ngSubmit)="onSubmit()"  [formGroup]="form" class="form-horizontal">
+<!-- <form (ngSubmit)="onSubmit()"  [formGroup]="form" class="form-horizontal"> -->
+    <form   [formGroup]="form" class="form-horizontal">
   <div *ngFor="let field of fields">
     <app-field-builder [field]="field" [form]="form"></app-field-builder>
   </div>

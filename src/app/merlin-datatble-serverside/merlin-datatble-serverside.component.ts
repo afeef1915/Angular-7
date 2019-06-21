@@ -68,7 +68,7 @@ export class MerlinDatatbleServersideComponent implements OnDestroy, OnInit {
   colums: any[];
   dtTrigger: Subject<any> = new Subject();
   send_data_service: any = {};
-  @ViewChild(DataTableDirective)
+  @ViewChild(DataTableDirective ,{static: false})
   datatableElement: DataTableDirective;
   //const list: string[] = [];
   users$: any[] = [];

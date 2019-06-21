@@ -38,7 +38,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
   styleUrls: ['./merlin-datatable.component.css']
 })
 export class MerlinDatatableComponent implements OnDestroy, OnInit   {
-  @ViewChild(DataTableDirective)
+  @ViewChild(DataTableDirective, {static: false})
   datatableElement: DataTableDirective;
   min: number;
   max: number;
@@ -53,7 +53,7 @@ export class MerlinDatatableComponent implements OnDestroy, OnInit   {
   //dtOptions: any = {};
   constructor(private router: Router, private http: Http, private personservice: PersonService, private httpClient: HttpClient,
     private formBuilder: FormBuilder) { }
-
+   
   send_data_service: any = {};
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();

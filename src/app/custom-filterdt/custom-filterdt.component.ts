@@ -8,7 +8,7 @@ import { DatatableexampleComponent } from '../datatableexample/datatableexample.
   styleUrls: ['./custom-filterdt.component.css']
 })
 export class CustomFilterdtComponent implements OnDestroy, OnInit {
-  @ViewChild(DataTableDirective)
+  @ViewChild(DataTableDirective, {static: false})
   datatableElement: DataTableDirective;
   min: number;
   max: number;

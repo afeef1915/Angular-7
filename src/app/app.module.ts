@@ -120,6 +120,11 @@ import { SearchDynamicComponent } from './search-dynamic/search-dynamic.componen
 import { DynamicFormsTestComponent } from './dynamic-forms-test/dynamic-forms-test.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { Parents1Component } from './parents1/parents1.component';
+import { Child1Component } from './child1/child1.component';
+import { Child2Component } from './child2/child2.component';
+import { First1Component } from './first1/first1.component';
+import { Second1Component } from './second1/second1.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -203,7 +208,12 @@ import { environment } from '../environments/environment';
     DropdownStComponent,
     MerlinDatatbleServersideComponent,
     SearchDynamicComponent,
-    DynamicFormsTestComponent
+    DynamicFormsTestComponent,
+    Parents1Component,
+    Child1Component,
+    Child2Component,
+    First1Component,
+    Second1Component
     //DemoModalServiceNestedComponent
 
     //QuiztextboxComponent,

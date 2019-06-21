@@ -51,6 +51,7 @@ import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
 import { ViewTableComponent } from './view-table/view-table.component';
 import { MerlinDatatbleServersideComponent} from './merlin-datatble-serverside/merlin-datatble-serverside.component';
 import {DynamicFormsTestComponent} from './dynamic-forms-test/dynamic-forms-test.component';
+import {Parents1Component} from './parents1/parents1.component';
 const routes: Routes = [
 
   // { path: '', redirectTo: '/dashboard', pathMatch: 'full', canActivate: [AuthGuard] },
@@ -97,6 +98,7 @@ const routes: Routes = [
   { path : 'merlin-dts', component: DatatableServersideComponent},
   { path : 'merlin-dtc', component: MerlinDatatbleServersideComponent},
   {path : 'test-dynamic-filters', component: DynamicFormsTestComponent},
+  { path : 'parent1', component: Parents1Component},
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
 ];

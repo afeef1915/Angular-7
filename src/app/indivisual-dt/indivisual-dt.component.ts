@@ -8,7 +8,7 @@ import { DataTableDirective } from 'angular-datatables';
   styleUrls: ['./indivisual-dt.component.css']
 })
 export class IndivisualDtComponent implements OnInit, AfterViewInit {
-  @ViewChild(DataTableDirective)
+  @ViewChild(DataTableDirective, {static: false})
   datatableElement: DataTableDirective;
   private apiUrl = 'http://localhost/angular7demo/person.php?type=get-person1';
   //dtOptions: DataTables.Settings = {};

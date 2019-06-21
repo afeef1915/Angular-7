@@ -21,7 +21,7 @@ export class QuizBannerComponent implements OnInit, OnDestroy {
   @Input() quizs: AddQuiz[];
   currIndex = -1;
   currentAdIndex = -1;
-  @ViewChild(QuizDirective) adQuiz: QuizDirective;
+  @ViewChild(QuizDirective ,{static: false}) adQuiz: QuizDirective;
   interval: any;
   // quizes: AddQuiz[];
 
